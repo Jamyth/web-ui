@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "lib": ["DOM", "ESNext"],
+        "target": "ES5",
+        "module": "CommonJS",
+        "isolatedModules": true,
+        "declaration": true,
+        "jsx": "react",
+        "rootDir": "../src"
+    },
+    "include": ["../src"]
+}

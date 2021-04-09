@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "lib": ["DOM", "ESNext"],
+        "module": "CommonJS",
+        "target": "ES2015",
+        "noEmit": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "rootDir": "../script",
+    },
+    "include": ["../script"]
+}
