@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/layout';
+import { Box, Heading, Flex } from '@chakra-ui/layout';
 import React from 'react';
 
 export interface DemoHelperGroup {
@@ -20,7 +20,7 @@ export const DemoHelper = React.memo(({ groups }: Props) => {
                     <Heading fontSize="26px" mb="5px">
                         {title}
                     </Heading>
-                    <Box backgroundColor="white" borderRadius="10px">
+                    <Flex flexWrap="wrap" alignItems="center" backgroundColor="white" borderRadius="10px">
                         {components.map((component, index) =>
                             component === '-' ? (
                                 <Box key={index} h="15px" />
@@ -30,7 +30,7 @@ export const DemoHelper = React.memo(({ groups }: Props) => {
                                 <Box>{component}</Box>
                             ),
                         )}
-                    </Box>
+                    </Flex>
                 </Box>
             ))}
         </>

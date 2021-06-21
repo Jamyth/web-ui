@@ -13,7 +13,7 @@ export const NotFound = React.memo(() => {
 
     return (
         <AdminPage textAlign="center" py={10}>
-            <Heading size="lg">Sorry, the page you're looking for does not exist.</Heading>
+            <Heading size="lg">Sorry, the page {"you're"} looking for does not exist.</Heading>
             <Code w="initial">{location.pathname}</Code>
             <Box>
                 <Button onClick={backToHome}>Back to Home Page</Button>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { SafeReactChildren } from '../../type';
-import { Box, VStack, StackProps } from '@chakra-ui/react';
+import type { SafeReactChildren } from '../../type';
+import type { StackProps } from '@chakra-ui/react';
+import { Box, VStack } from '@chakra-ui/react';
 
 interface Props extends StackProps {
     children: SafeReactChildren;

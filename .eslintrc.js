@@ -4,4 +4,4 @@ const config = {
     extends: ['iamyth/preset/react']
 }
 
-export default config;
+module.exports = config;
