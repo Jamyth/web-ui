@@ -1,11 +1,12 @@
 {
   "name": "@iamyth/web-ui",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "An enhanced version of Chakra-ui",
   "main": "dist/index.js",
   "author": "Jamyth",
   "license": "MIT",
   "private": false,
+  "files": ["dist/**"],
   "scripts": {
     "run-script": "ts-node --project config/tsconfig.script.json",
     "start": "yarn run-script script/start.ts",
