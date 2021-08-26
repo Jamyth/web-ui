@@ -1,0 +1,72 @@
+.ck-editor {
+    width: 100%;
+
+    // Must specify line-height (otherwise inherits 32px from ".g-form" for editor, and inherits 1.5715 from ".ant-tabs" for preview)
+    line-height: 1.5; // Keep this in sync with web-shared <CKEditorHTMLContent />
+
+    .ck-editor__main {
+        .ck-content {
+            min-height: 200px;
+
+            max-height: 250px;
+            overflow-y: scroll;
+
+            // Add styles for <a> because antd resets the styles :(
+            a {
+                text-decoration: underline;
+                cursor: pointer;
+                padding: 0 3px;
+            }
+
+            // Chakra removes margin and padding in ol and ul
+            ol,
+            ul {
+                padding-left: 40px !important;
+            }
+
+            // The following are default styles bundled from CKEditor
+            // Duplicate them here again in case these defaults changed
+
+            // Default styles for <figure class="image">
+            .image {
+                display: table;
+                clear: both;
+                text-align: center;
+                margin: 1em auto;
+                img {
+                    display: block;
+                    margin: 0 auto;
+                    max-width: 100%;
+                    min-width: 50px;
+                }
+                &.image_resized {
+                    max-width: 100%;
+                    display: block;
+                    box-sizing: border-box;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+
+            // Default styles for <figure class="table">
+            .table {
+                display: table;
+                margin: 1em auto;
+                table {
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 1px double #b3b3b3;
+                    td,
+                    th {
+                        min-width: 2em;
+                        padding: 0.4em;
+                        border: 1px solid #bfbfbf;
+                    }
+                }
+            }
+        }
+    }
+}

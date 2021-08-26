@@ -1,12 +1,14 @@
 {
   "name": "@iamyth/web-ui",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "An enhanced version of Chakra-ui",
   "main": "dist/index.js",
   "author": "Jamyth",
   "license": "MIT",
   "private": false,
-  "files": ["dist/**"],
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "run-script": "ts-node --project config/tsconfig.script.json",
     "start": "yarn run-script script/start.ts",
@@ -17,24 +19,35 @@
   "devDependencies": {
     "@iamyth/logger": "1.0.4",
     "@iamyth/prettier-config": "0.0.1",
-    "@iamyth/webpack-runner": "1.0.9",
-    "@types/react": "17.0.11",
-    "@types/react-dom": "17.0.8",
-    "@types/react-router-dom": "5.1.7",
-    "eslint": "7.29.0",
-    "eslint-config-iamyth": "0.0.7",
-    "prettier": "2.3.1",
+    "@iamyth/webpack-runner": "1.3.0",
+    "@types/ckeditor__ckeditor5-build-classic": "29.0.1",
+    "@types/ckeditor__ckeditor5-core": "28.0.7",
+    "@types/ckeditor__ckeditor5-utils": "28.0.4",
+    "@types/fs-extra": "9.0.12",
+    "@types/react": "17.0.19",
+    "@types/react-dom": "17.0.9",
+    "@types/react-router-dom": "5.1.8",
+    "eslint": "7.32.0",
+    "eslint-config-iamyth": "0.0.9",
+    "fs-extra": "10.0.0",
+    "prettier": "2.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router-dom": "5.2.0",
-    "ts-node": "10.0.0",
-    "typescript": "4.3.4"
+    "ts-node": "10.2.1",
+    "typescript": "4.3.5"
   },
   "dependencies": {
-    "@chakra-ui/react": "1.5.0",
-    "@emotion/react": "11",
-    "@emotion/styled": "11",
-    "framer-motion": "4",
+    "@chakra-ui/react": "1.6.6",
+    "@ckeditor/ckeditor5-alignment": "29.1.0",
+    "@ckeditor/ckeditor5-build-classic": "29.1.0",
+    "@ckeditor/ckeditor5-core": "29.1.0",
+    "@ckeditor/ckeditor5-font": "29.1.0",
+    "@ckeditor/ckeditor5-horizontal-line": "29.1.0",
+    "@ckeditor/ckeditor5-react": "3.0.2",
+    "@emotion/react": "11.4.1",
+    "@emotion/styled": "11.3.0",
+    "framer-motion": "4.1.17",
     "react-icons": "4.2.0"
   }
 }

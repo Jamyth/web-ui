@@ -5,6 +5,9 @@ import { ButtonPage } from './core/ButtonDemo';
 import { CheckboxPage } from './core/CheckboxDemo';
 import { FormPage } from './core/FormDemo';
 import { TablePage } from './core/TableDemo';
+import { DrawerPage } from './core/DrawerDemo';
+import { ModalPage } from './core/ModalDemo';
+import { ToastPage } from './core/ToastDemo';
 
 export const NavigationService: Props[] = [
     {
@@ -54,6 +57,31 @@ export const NavigationService: Props[] = [
                 name: 'Default',
                 path: '/table',
                 component: TablePage,
+            },
+        ],
+    },
+    {
+        title: 'Overlay',
+        modules: [
+            {
+                name: 'Drawer',
+                path: '/overlay/drawer',
+                component: DrawerPage,
+            },
+            {
+                name: 'Modal',
+                path: '/overlay/modal',
+                component: ModalPage,
+            },
+        ],
+    },
+    {
+        title: 'Util',
+        modules: [
+            {
+                name: 'Toast',
+                path: '/util/toast',
+                component: ToastPage,
             },
         ],
     },

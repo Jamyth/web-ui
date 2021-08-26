@@ -9,7 +9,7 @@ interface Props {
 
 export const Header = React.memo(({ value, onChange }: Props) => {
     return (
-        <Box background="white" shadow="md" p={2} px={4}>
+        <Box background="white" shadow="md" zIndex={10} p={2} px={4}>
             Is Light Mode <Switch value={value} onChange={onChange} />
         </Box>
     );

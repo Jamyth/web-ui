@@ -5,6 +5,7 @@ import { withUncontrolledInitialValue } from '../util/withUncontrolledInitialVal
 import { DemoHelper } from '../util/DemoHelper';
 import type { DemoHelperGroup } from '../util/DemoHelper';
 import { Switch } from '@iamyth/web-ui/core/Switch';
+import { RichTextEditor } from '@iamyth/web-ui/core/RichTextEditor';
 
 const DefaultInput = withUncontrolledInitialValue(Input);
 const ReadonlyInput = withUncontrolledInitialValue(Input.Readonly);
@@ -12,6 +13,7 @@ const NullableInput = withUncontrolledInitialValue(Input.Nullable);
 const PasswordInput = withUncontrolledInitialValue(Input.Password);
 const TextareaInput = withUncontrolledInitialValue(Input.Textarea);
 const DefaultSwitch = withUncontrolledInitialValue(Switch);
+const DefaultEditor = withUncontrolledInitialValue(RichTextEditor);
 
 export const InputPage = React.memo(() => {
     const groups: DemoHelperGroup[] = [
@@ -22,6 +24,10 @@ export const InputPage = React.memo(() => {
         {
             title: 'Basic Switch',
             components: [<DefaultSwitch initialValue={true} />],
+        },
+        {
+            title: 'Basic Editor',
+            components: [<DefaultEditor method="POST" uploadURL="test" formDataFields={{}} initialValue={''} />],
         },
         {
             title: 'Readonly',
