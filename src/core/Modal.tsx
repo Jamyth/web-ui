@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ModalProps } from '@chakra-ui/react';
+import { ModalFooter, ModalProps } from '@chakra-ui/react';
 import {
     Modal as ChakraModal,
     ModalOverlay,
@@ -19,10 +19,21 @@ export interface Props extends Omit<ModalProps, 'isOpen'> {
     loading?: boolean;
     nested?: boolean;
     showCloseButton?: boolean;
+    footer?: SafeReactChildren;
 }
 
 export const Modal = React.memo(
-    ({ title, children, onClose, loading = false, nested, showCloseButton = true, isOpen = true, ...props }: Props) => {
+    ({
+        title,
+        children,
+        onClose,
+        loading = false,
+        nested,
+        showCloseButton = true,
+        isOpen = true,
+        footer,
+        ...props
+    }: Props) => {
         const overlayZIndex = nested ? 1400 : 1300;
         return (
             <ChakraModal isOpen={isOpen} onClose={onClose} {...props}>
@@ -33,6 +44,7 @@ export const Modal = React.memo(
                     <Loader loading={loading}>
                         <ModalBody pb={8}>{children}</ModalBody>
                     </Loader>
+                    {footer && <ModalFooter>{footer}</ModalFooter>}
                 </ModalContent>
             </ChakraModal>
         );

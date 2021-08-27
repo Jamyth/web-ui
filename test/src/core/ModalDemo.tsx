@@ -4,6 +4,8 @@ import { Modal } from '@iamyth/web-ui/core/Modal';
 import { DemoHelper } from '../util/DemoHelper';
 import type { DemoHelperGroup } from '../util/DemoHelper';
 import { withUncontrolledModal } from '../util/withUncontrolledModal';
+import { ModalUtil } from '@iamyth/web-ui/util/ModalUtil';
+import { Button } from '@iamyth/web-ui/core/Button';
 
 const UncontrolledModal = withUncontrolledModal(Modal);
 
@@ -33,6 +35,75 @@ export const ModalPage = React.memo(() => {
                         </UncontrolledModal>
                     </UncontrolledModal>
                 </UncontrolledModal>,
+            ],
+        },
+        {
+            title: 'Imperative Call Async',
+            components: [
+                <Button
+                    onClick={async () => {
+                        await ModalUtil.createAsync({
+                            body: 'hello',
+                        });
+                        await ModalUtil.createAsync({
+                            body: 'hello 2',
+                        });
+                        await ModalUtil.createAsync({
+                            body: 'hello 3',
+                        });
+                    }}
+                >
+                    Open
+                </Button>,
+            ],
+        },
+        {
+            title: 'Imperative Call Without Close Button',
+            components: [
+                <Button
+                    onClick={async () => {
+                        await ModalUtil.createAsync({
+                            body: 'hello',
+                            closable: false,
+                            title: 'This is title',
+                        });
+                    }}
+                >
+                    Open
+                </Button>,
+            ],
+        },
+        {
+            title: 'Imperative Call -- Confirm',
+            components: [
+                <Button
+                    onClick={async () => {
+                        const exitType = await ModalUtil.confirm('Confirm me');
+                        ModalUtil.confirm(`Exit Type: ${exitType}`);
+                    }}
+                >
+                    Open
+                </Button>,
+            ],
+        },
+        {
+            title: 'Imperative Call Sync',
+            components: [
+                <Button
+                    onClick={async () => {
+                        ModalUtil.createSync({
+                            body: 'hello',
+                        });
+                        ModalUtil.createSync({
+                            body: 'hello 2',
+                        });
+                        ModalUtil.createSync({
+                            body: <Button onClick={ModalUtil.destroyAll}>Close All Modal</Button>,
+                        });
+                    }}
+                >
+                    Open
+                </Button>,
             ],
         },
     ];

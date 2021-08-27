@@ -47,7 +47,10 @@ class CustomUploadAdapter {
                     // const {imageURL} = UploadUtil.castImageUploadResponse(response);
                     resolve({ default: imageURL });
                 } catch (e) {
-                    const errorMessage = e?.message || '[Unknown]';
+                    let errorMessage = '[Unknown]';
+                    if (e instanceof Error) {
+                        errorMessage = e.message;
+                    }
                     onFailure(errorMessage);
                 }
             };

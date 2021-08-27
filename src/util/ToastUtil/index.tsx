@@ -3,12 +3,6 @@ import ReactDOM from 'react-dom';
 import { extendTheme, Theme, theme, ChakraProvider, UseToastOptions } from '@chakra-ui/react';
 import { ToastContainer } from './ToastContainer';
 
-interface SimpleToastOptions {
-    message: string;
-    title?: string;
-    duration?: number;
-}
-
 export class ToastUtil {
     private static theme: Theme = theme;
     private static options: UseToastOptions = {

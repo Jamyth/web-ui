@@ -3,6 +3,8 @@
         "moduleResolution": "node",
         "strict": true,
         "esModuleInterop": true,
+        "useUnknownInCatchVariables": true,
+        "exactOptionalPropertyTypes": false,
         "allowSyntheticDefaultImports": true,
         "downlevelIteration": true,
         "allowJs": true,
