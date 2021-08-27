@@ -12,6 +12,7 @@ interface Props {
     className?: string;
     id?: string;
     onValidationStatusChange?: (isValidating: boolean) => void;
+    loading?: boolean;
 }
 
 export class Form extends React.PureComponent<Props> {
@@ -55,13 +56,15 @@ export class Form extends React.PureComponent<Props> {
     };
 
     render() {
-        const { id, children } = this.props;
+        const { id, children, loading } = this.props;
         return (
             <form id={id} onSubmit={this.onSubmit}>
                 <FormValidationContext.Provider value={this.validationContext}>
                     <div>{children}</div>
                     <ButtonGroup>
-                        <Button type="submit">提交</Button>
+                        <Button type="submit" isLoading={loading}>
+                            提交
+                        </Button>
                     </ButtonGroup>
                 </FormValidationContext.Provider>
             </form>
