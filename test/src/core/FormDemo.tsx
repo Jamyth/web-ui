@@ -59,6 +59,51 @@ export const FormPage = React.memo(() => {
                 </Form>,
             ],
         },
+        {
+            title: 'Custom Submit Text',
+            components: [
+                <Form onFinish={() => submit(3)} submitText="登入">
+                    <Form.Item label="Input 1" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                </Form>,
+            ],
+        },
+        {
+            title: 'Custom Submit Button Position',
+            components: [
+                <Form onFinish={() => submit(3)} submitText="登入">
+                    <Form.Item label="Input 1" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                </Form>,
+                ' ',
+                <Form onFinish={() => submit(3)} submitText="登入" submitButtonPosition="center">
+                    <Form.Item label="Input 1" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                </Form>,
+                ' ',
+                <Form onFinish={() => submit(3)} submitText="登入" submitButtonPosition="right">
+                    <Form.Item label="Input 1" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2" placeholder="this is placeholder">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                </Form>,
+                ' ',
+            ],
+        },
     ];
 
     return (

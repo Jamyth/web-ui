@@ -13,6 +13,8 @@ interface Props {
     id?: string;
     onValidationStatusChange?: (isValidating: boolean) => void;
     loading?: boolean;
+    submitText?: string;
+    submitButtonPosition?: 'left' | 'right' | 'center';
 }
 
 export class Form extends React.PureComponent<Props> {
@@ -55,15 +57,27 @@ export class Form extends React.PureComponent<Props> {
         this.triggerSubmit();
     };
 
+    getJustifyContent = (): string | undefined => {
+        const submitButtonPosition = this.props.submitButtonPosition;
+        switch (submitButtonPosition) {
+            case 'left':
+                return 'flex-start';
+            case 'center':
+                return 'center';
+            case 'right':
+                return 'flex-end';
+        }
+    };
+
     render() {
-        const { id, children, loading } = this.props;
+        const { id, children, loading, submitText, submitButtonPosition } = this.props;
         return (
             <form id={id} onSubmit={this.onSubmit}>
                 <FormValidationContext.Provider value={this.validationContext}>
                     <div>{children}</div>
-                    <ButtonGroup>
-                        <Button type="submit" isLoading={loading}>
-                            提交
+                    <ButtonGroup w="100%" justifyContent={this.getJustifyContent()}>
+                        <Button type="submit" colorScheme="blue" isLoading={loading}>
+                            {submitText ?? '提交'}
                         </Button>
                     </ButtonGroup>
                 </FormValidationContext.Provider>
