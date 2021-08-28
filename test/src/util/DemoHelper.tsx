@@ -6,6 +6,7 @@ export interface DemoHelperGroup {
     components: (React.ReactElement | '-' | ' ')[];
     showPropsHint?: boolean;
     style?: React.CSSProperties;
+    fullWidth?: boolean;
 }
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 export const DemoHelper = React.memo(({ groups }: Props) => {
     return (
         <>
-            {groups.map(({ title, components, showPropsHint, style: GroupStyle }) => (
+            {groups.map(({ title, components, showPropsHint, style: GroupStyle, fullWidth }) => (
                 <Box key={title}>
                     <Heading fontSize="26px" mb="5px">
                         {title}
@@ -27,7 +28,7 @@ export const DemoHelper = React.memo(({ groups }: Props) => {
                             ) : component === ' ' ? (
                                 <Box key={index} w="20px" />
                             ) : (
-                                <Box>{component}</Box>
+                                <Box w={fullWidth ? '100%' : undefined}>{component}</Box>
                             ),
                         )}
                     </Flex>

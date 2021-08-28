@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, FormLabel, FormHelperText } from '@chakra-ui/react';
+import { FormControl, FormLabel, FormHelperText, Flex } from '@chakra-ui/react';
 import type { SafeReactChild } from '../../type';
 import { FormValidationContext } from './context';
 
@@ -49,13 +49,20 @@ export class Item extends React.PureComponent<Props, State> {
     render() {
         const { label, children, placeholder } = this.props;
         const { errorMessage } = this.state;
+        const isInline = this.context.layout === 'inline';
 
         return (
-            <FormControl mb={2}>
-                <FormLabel>{label}</FormLabel>
-                {children}
-                {placeholder && <FormHelperText>{placeholder}</FormHelperText>}
-                {errorMessage && <FormHelperText color="red.500">{errorMessage}</FormHelperText>}
+            <FormControl mr={isInline ? 4 : undefined} mb={2}>
+                <Flex alignItems={isInline ? 'center' : undefined} flexDirection={isInline ? 'row' : 'column'}>
+                    <FormLabel whiteSpace="nowrap">{label}</FormLabel>
+                    {children}
+                </Flex>
+                {placeholder && <FormHelperText whiteSpace="nowrap">{placeholder}</FormHelperText>}
+                {errorMessage && (
+                    <FormHelperText color="red.500" whiteSpace="nowrap">
+                        {errorMessage}
+                    </FormHelperText>
+                )}
             </FormControl>
         );
     }

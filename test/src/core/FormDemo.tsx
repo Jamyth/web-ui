@@ -34,6 +34,28 @@ export const FormPage = React.memo(() => {
             ],
         },
         {
+            title: 'Admin Filter',
+            fullWidth: true,
+            components: [
+                <AdminPage.Filter
+                    onFinish={() => {}}
+                    onReset={() => {}}
+                    extraButtons={[
+                        {
+                            btnText: '下載',
+                        },
+                    ]}
+                >
+                    <Form.Item label="Input 1">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                </AdminPage.Filter>,
+            ],
+        },
+        {
             title: 'With Validator',
             components: [
                 <Form onFinish={() => submit(2)}>

@@ -5,16 +5,30 @@ import { Button } from '../Button';
 import type { FormValidationContextType } from './context';
 import { FormValidationContext } from './context';
 import { Item } from './Item';
+import { Flex } from '@chakra-ui/react';
+import type { Props as ButtonProps } from '../Button';
+import { SafeReactChild } from '../../type';
 
-interface Props {
+interface ExtraButtonProps {
+    btnText: string | SafeReactChild;
+    colorScheme?: ButtonProps['colorScheme'];
+    disabled?: boolean;
+    variant?: ButtonProps['variant'];
+    onClick?: () => {};
+}
+
+export interface Props {
     children: SafeReactChildren;
     onFinish: () => void;
+    onReset?: () => void;
+    layout?: 'horizontal' | 'vertical' | 'inline';
     className?: string;
     id?: string;
     onValidationStatusChange?: (isValidating: boolean) => void;
     loading?: boolean;
     submitText?: string;
     submitButtonPosition?: 'left' | 'right' | 'center';
+    extraButtons?: ExtraButtonProps[];
 }
 
 export class Form extends React.PureComponent<Props> {
@@ -26,6 +40,7 @@ export class Form extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props);
         this.validationContext = {
+            layout: props.layout ?? 'vertical',
             registerValidator: (validator) => this.validators.push(validator),
             unregisterValidator: (validator) => {
                 const index = this.validators.indexOf(validator);
@@ -70,18 +85,32 @@ export class Form extends React.PureComponent<Props> {
     };
 
     render() {
-        const { id, children, loading, submitText, submitButtonPosition } = this.props;
+        const { id, children, loading, submitText, layout = 'vertical', extraButtons, onReset } = this.props;
         return (
-            <form id={id} onSubmit={this.onSubmit}>
+            <Flex as="form" id={id} onSubmit={this.onSubmit as any}>
                 <FormValidationContext.Provider value={this.validationContext}>
-                    <div>{children}</div>
-                    <ButtonGroup w="100%" justifyContent={this.getJustifyContent()}>
-                        <Button type="submit" colorScheme="blue" isLoading={loading}>
-                            {submitText ?? '提交'}
-                        </Button>
-                    </ButtonGroup>
+                    <Flex flexDirection={layout === 'vertical' ? 'column' : 'row'}>
+                        {children}
+                        <ButtonGroup w="100%" justifyContent={this.getJustifyContent()}>
+                            <Button type="submit" colorScheme="blue" isLoading={loading}>
+                                {submitText ?? '提交'}
+                            </Button>
+                            {onReset && (
+                                <Button type="button" variant="outline" colorScheme="blue" isLoading={loading}>
+                                    重設
+                                </Button>
+                            )}
+                            {extraButtons?.map(
+                                ({ btnText, variant = 'outline', colorScheme = 'blue', ...props }, i) => (
+                                    <Button {...props} variant={variant} colorScheme={colorScheme} key={i}>
+                                        {btnText}
+                                    </Button>
+                                ),
+                            )}
+                        </ButtonGroup>
+                    </Flex>
                 </FormValidationContext.Provider>
-            </form>
+            </Flex>
         );
     }
 }

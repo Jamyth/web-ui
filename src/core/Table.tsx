@@ -29,7 +29,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
 
     renderHeader = (column: TableColumn<RowType>, index: number) => {
         return (
-            <Th key={index} textAlign={column.align ?? 'left'}>
+            <Th key={index} fontSize="14px" textAlign={column.align ?? 'left'}>
                 {column.title}
             </Th>
         );
@@ -39,7 +39,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
         const isSticky = column.fixed ? 'sticky' : undefined;
         const style = column.fixed ? { [column.fixed]: 0 } : {};
         return (
-            <Td position={isSticky} {...style} textAlign={column.align}>
+            <Td position={isSticky} {...style} fontSize="14px" textAlign={column.align}>
                 {column.renderData(record, index)}
             </Td>
         );

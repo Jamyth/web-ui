@@ -52,6 +52,11 @@ export const TablePage = React.memo(() => {
                 <Table columns={columns} dataSource={[]} emptyText="Custom Empty Text" rowKey="name" />,
             ],
         },
+        {
+            title: 'Full Size',
+            fullWidth: true,
+            components: [<Table columns={columns} dataSource={dataSource} rowKey="name" />],
+        },
     ];
 
     return (
