@@ -89,7 +89,7 @@ export class Form extends React.PureComponent<Props> {
         return (
             <Flex as="form" id={id} onSubmit={this.onSubmit as any}>
                 <FormValidationContext.Provider value={this.validationContext}>
-                    <Flex flexDirection={layout === 'vertical' ? 'column' : 'row'}>
+                    <Flex w="100%" flexDirection={layout === 'vertical' ? 'column' : 'row'}>
                         {children}
                         <ButtonGroup w="100%" justifyContent={this.getJustifyContent()}>
                             <Button type="submit" colorScheme="blue" isLoading={loading}>
