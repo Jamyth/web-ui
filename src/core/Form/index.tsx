@@ -96,7 +96,13 @@ export class Form extends React.PureComponent<Props> {
                                 {submitText ?? '提交'}
                             </Button>
                             {onReset && (
-                                <Button type="button" variant="outline" colorScheme="blue" isLoading={loading}>
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    colorScheme="blue"
+                                    onClick={onReset}
+                                    isLoading={loading}
+                                >
                                     重設
                                 </Button>
                             )}
