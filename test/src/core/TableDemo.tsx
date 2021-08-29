@@ -4,6 +4,7 @@ import { DemoHelper } from '../util/DemoHelper';
 import type { DemoHelperGroup } from '../util/DemoHelper';
 import { Table } from '@iamyth/web-ui/core/Table';
 import type { TableColumns } from '@iamyth/web-ui/core/Table';
+import { Pagination } from '@iamyth/web-ui/core/Pagination';
 
 interface RowItem {
     name: string;
@@ -12,6 +13,9 @@ interface RowItem {
 }
 
 export const TablePage = React.memo(() => {
+    const [pageIndex, setPageIndex] = React.useState(1);
+    const [pageSize, setPageSize] = React.useState(10);
+
     const dataSource: RowItem[] = [
         {
             name: 'Jamyth',
@@ -55,7 +59,22 @@ export const TablePage = React.memo(() => {
         {
             title: 'Full Size',
             fullWidth: true,
-            components: [<Table columns={columns} dataSource={dataSource} rowKey="name" />],
+            components: [
+                <React.Fragment>
+                    <Table columns={columns} dataSource={dataSource} rowKey="name" />
+                    <Pagination
+                        totalCount={1000}
+                        totalPage={100}
+                        pageIndex={pageIndex}
+                        pageSize={pageSize}
+                        onPageChange={setPageIndex}
+                        onSizeChange={(pageIndex, pageSize) => {
+                            setPageIndex(pageIndex);
+                            setPageSize(pageSize);
+                        }}
+                    />
+                </React.Fragment>,
+            ],
         },
     ];
 

@@ -13,7 +13,7 @@ export class StorageHelper {
 
     constructor(private readonly storage: Storage) {}
 
-    clear(options?: ClearOptions): void {
+    clear = (options?: ClearOptions): void => {
         try {
             if (options) {
                 if ('keys' in options) {
@@ -42,39 +42,39 @@ export class StorageHelper {
         } catch (e) {
             // Do nothing
         }
-    }
+    };
 
-    setBool(key: string, value: boolean): void {
+    setBool = (key: string, value: boolean): void => {
         this.set(key, value ? StorageHelper.trueBoolValue : StorageHelper.falseBoolValue);
-    }
+    };
 
-    setString(key: string, value: string): void {
+    setString = (key: string, value: string): void => {
         this.set(key, value);
-    }
+    };
 
-    setNumber(key: string, value: number): void {
+    setNumber = (key: string, value: number): void => {
         this.set(key, value.toString());
-    }
+    };
 
-    setObject<T extends object>(key: string, item: T): void {
+    setObject = <T extends object>(key: string, item: T): void => {
         this.set(key, JSON.stringify(item));
-    }
+    };
 
-    getBool(key: string, defaultValue: boolean): boolean {
+    getBool = (key: string, defaultValue: boolean): boolean => {
         const transformer = (_: string) =>
             _ === StorageHelper.trueBoolValue ? true : _ === StorageHelper.falseBoolValue ? false : null;
         return this.get(key, defaultValue, transformer);
-    }
+    };
 
-    getString<T extends string = string>(key: string, defaultValue: T, validValues?: readonly T[]): T {
+    getString = <T extends string = string>(key: string, defaultValue: T, validValues?: readonly T[]): T => {
         const transformer = (_: string): T | null => {
             const typedValue = _ as T;
             return validValues ? (validValues.includes(typedValue) ? typedValue : null) : typedValue;
         };
         return this.get(key, defaultValue, transformer);
-    }
+    };
 
-    getNumber(key: string, defaultValue: number, validator?: number[] | ((value: number) => boolean)): number {
+    getNumber = (key: string, defaultValue: number, validator?: number[] | ((value: number) => boolean)): number => {
         const transformer = (_: string): number | null => {
             const numberedData = Number(_);
             if (Number.isFinite(numberedData)) {
@@ -93,9 +93,9 @@ export class StorageHelper {
             return null;
         };
         return this.get(key, defaultValue, transformer);
-    }
+    };
 
-    getObject<T extends object>(key: string, defaultValue: T, validator: (item: object) => boolean): T {
+    getObject = <T extends object>(key: string, defaultValue: T, validator: (item: object) => boolean): T => {
         const transformer = (_: string): T | null => {
             try {
                 const obj: object = JSON.parse(_);
@@ -109,15 +109,15 @@ export class StorageHelper {
             }
         };
         return this.get(key, defaultValue, transformer);
-    }
+    };
 
-    getRaw(key: string): string | null {
+    getRaw = (key: string): string | null => {
         try {
             return this.storage.getItem(key);
         } catch (e) {
             return null;
         }
-    }
+    };
 
     private set(key: string, value: string): void {
         try {

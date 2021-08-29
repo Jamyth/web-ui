@@ -3,6 +3,7 @@ import type { SafeReactChildren, StringKey } from '../type';
 import { Table as ChakraTable, Th, Tr, Thead, Tbody, Td, Box } from '@chakra-ui/react';
 import { AiOutlineFileExclamation } from 'react-icons/ai';
 import { Flex } from '@chakra-ui/layout';
+import { i18n } from '../internal/i18n/core';
 
 export interface TableColumn<RowType extends object> {
     title: React.ReactElement | React.ReactChild;
@@ -59,7 +60,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
 
     render() {
         const { loading, columns, emptyText, dataSource } = this.props;
-
+        const t = i18n();
         const emptyTextNode = loading ? (
             <Box />
         ) : (
@@ -68,7 +69,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
                     <Flex alignItems="center" py="50px" justifyContent="center">
                         <AiOutlineFileExclamation fontSize="28px" />
                         <Box as="h2" ml={2}>
-                            {emptyText ?? '沒有數據'}
+                            {emptyText ?? t.emptyData}
                         </Box>
                     </Flex>
                 </Td>

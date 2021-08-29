@@ -8,6 +8,7 @@ import { Item } from './Item';
 import { Flex } from '@chakra-ui/react';
 import type { Props as ButtonProps } from '../Button';
 import { SafeReactChild } from '../../type';
+import { i18n } from '../../internal/i18n/core';
 
 interface ExtraButtonProps {
     btnText: string | SafeReactChild;
@@ -86,6 +87,7 @@ export class Form extends React.PureComponent<Props> {
 
     render() {
         const { id, children, loading, submitText, layout = 'vertical', extraButtons, onReset } = this.props;
+        const t = i18n();
         return (
             <Flex as="form" id={id} onSubmit={this.onSubmit as any}>
                 <FormValidationContext.Provider value={this.validationContext}>
@@ -93,7 +95,7 @@ export class Form extends React.PureComponent<Props> {
                         {children}
                         <ButtonGroup w="100%" justifyContent={this.getJustifyContent()}>
                             <Button type="submit" colorScheme="blue" isLoading={loading}>
-                                {submitText ?? '提交'}
+                                {submitText ?? t.submit}
                             </Button>
                             {onReset && (
                                 <Button
@@ -103,7 +105,7 @@ export class Form extends React.PureComponent<Props> {
                                     onClick={onReset}
                                     isLoading={loading}
                                 >
-                                    重設
+                                    {t.reset}
                                 </Button>
                             )}
                             {extraButtons?.map(
