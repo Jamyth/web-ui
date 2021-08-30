@@ -52,6 +52,30 @@ export const FormPage = React.memo(() => {
                     <Form.Item label="Input 2">
                         <DefaultInput initialValue="" />
                     </Form.Item>
+                    <Form.Item label="Input 1">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 1">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 1">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 1">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2">
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
                 </AdminPage.Filter>,
             ],
         },

@@ -13,6 +13,7 @@ export const Navbar = React.memo(({ logoSrc, navigationService, navigationColorM
     const location = useLocation();
     const isLightMode = navigationColorMode === 'light';
 
+    const modules = navigationService.map((_) => _.modules);
     const activeIndex = navigationService.findIndex((_) => _.modules.map((_) => _.path).includes(location.pathname));
 
     const renderAccordion = (service: NavigationService, index: number) => (
@@ -23,20 +24,25 @@ export const Navbar = React.memo(({ logoSrc, navigationService, navigationColorM
                 </Box>
             </AccordionButton>
             <AccordionPanel p={0}>
-                {service.modules.map((_) => (
-                    <Link
-                        as={NavLink}
-                        to={_.path}
-                        p={2}
-                        pl={16}
-                        d="block"
-                        backgroundColor={isLightMode ? 'gray.50' : 'gray.800'}
-                        fontSize="lg"
-                        key={_.path}
-                    >
-                        {_.name}
-                    </Link>
-                ))}
+                {service.modules.map((_) => {
+                    const isActive = _.path === location.pathname;
+                    const backgroundColor = isActive ? 'blue.500' : isLightMode ? 'gray.100' : 'gray.800';
+                    return (
+                        <Link
+                            as={NavLink}
+                            to={_.path}
+                            p={2}
+                            pl={16}
+                            d="block"
+                            backgroundColor={backgroundColor}
+                            color={isActive && isLightMode ? 'white' : undefined}
+                            fontSize="lg"
+                            key={_.path}
+                        >
+                            {_.name}
+                        </Link>
+                    );
+                })}
             </AccordionPanel>
         </AccordionItem>
     );
