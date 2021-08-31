@@ -19,12 +19,14 @@ interface State {
 export class Item extends React.PureComponent<Props, State> {
     static contextType = FormValidationContext;
     declare context: React.ContextType<typeof FormValidationContext>;
+    labelRef: React.RefObject<HTMLLabelElement>;
 
     constructor(props: Props) {
         super(props);
         this.state = {
             errorMessage: null,
         };
+        this.labelRef = React.createRef<HTMLLabelElement>();
     }
 
     componentDidMount() {
@@ -50,15 +52,34 @@ export class Item extends React.PureComponent<Props, State> {
         const { label, children, placeholder } = this.props;
         const { errorMessage } = this.state;
         const isInline = this.context.layout === 'inline';
+        const isVertical = this.context.layout === 'vertical';
+        const isHorizontal = this.context.layout === 'horizontal';
 
         return (
             <FormControl mr={isInline ? 4 : undefined} mb={2}>
-                <Flex alignItems={isInline ? 'center' : undefined} flexDirection={isInline ? 'row' : 'column'}>
-                    <FormLabel whiteSpace="nowrap">{label}</FormLabel>
+                <Flex alignItems={isVertical ? undefined : 'center'} flexDirection={isVertical ? 'column' : 'row'}>
+                    <FormLabel whiteSpace="nowrap" ref={this.labelRef}>
+                        {label}
+                    </FormLabel>
                     {children}
                 </Flex>
-                {placeholder && <FormHelperText>{placeholder}</FormHelperText>}
-                {errorMessage && <FormHelperText color="red.500">{errorMessage}</FormHelperText>}
+                {placeholder && (
+                    <FormHelperText
+                        pl={isHorizontal ? 3 : undefined}
+                        ml={isHorizontal ? `${this.labelRef?.current?.scrollWidth}px` : undefined}
+                    >
+                        {placeholder}
+                    </FormHelperText>
+                )}
+                {errorMessage && (
+                    <FormHelperText
+                        pl={isHorizontal ? 3 : undefined}
+                        color="red.500"
+                        ml={isHorizontal ? `${this.labelRef?.current?.scrollWidth}px` : undefined}
+                    >
+                        {errorMessage}
+                    </FormHelperText>
+                )}
             </FormControl>
         );
     }

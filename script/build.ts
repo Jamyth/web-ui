@@ -15,7 +15,7 @@ const logger = createConsoleLogger('TSC');
 logger.task('TypeScript Compile');
 spawn('tsc', ['-p', 'config/tsconfig.src.json'], 'Cannot Compile with tsc');
 
-const supportedExtensions = ['.scss', '.css', '.json', '.jpg', '.png', '.gif', '.mp3', '.mp4', '.wmv', '.js'];
+const supportedExtensions = ['.scss', '.css', '.json', '.jpg', '.png', '.gif', '.mp3', '.mp4', '.wmv', '.js', '.map'];
 fs.copySync(FilePath.src, FilePath.build, {
     filter: (source) => {
         const extension = path.extname(source);

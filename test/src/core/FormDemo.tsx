@@ -93,6 +93,19 @@ export const FormPage = React.memo(() => {
             ],
         },
         {
+            title: 'Horizontal Layout',
+            components: [
+                <Form onFinish={() => submit(2)} layout="horizontal">
+                    <Form.Item label="Input 1" validator={() => 'Custom Error Message'}>
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                    <Form.Item label="Input 2" validator={() => 'Custom Error Message'}>
+                        <DefaultInput initialValue="" />
+                    </Form.Item>
+                </Form>,
+            ],
+        },
+        {
             title: 'With Placeholder',
             components: [
                 <Form onFinish={() => submit(3)}>

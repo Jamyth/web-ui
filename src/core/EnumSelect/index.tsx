@@ -50,7 +50,7 @@ export class EnumSelect<Enum extends string | boolean | number> extends React.Pu
                 onChange={this.onChange}
             >
                 {list.map((_) => (
-                    <option key={_.toString()} value={_.toString()}>
+                    <option key={_.toString()} disabled={_ === InitialNullable.nullValue} value={_.toString()}>
                         {translator?.(_) ?? _.toString()}
                     </option>
                 ))}

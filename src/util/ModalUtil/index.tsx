@@ -3,6 +3,7 @@ import { ModalContainer } from './ModalContainer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SafeReactChild, SafeReactChildren } from '../../type';
+import { i18n } from '../../internal/i18n/util';
 
 export interface ModalOptions {
     body: SafeReactChildren;
@@ -69,8 +70,9 @@ export class ModalUtil {
     }
 
     static confirm(body: SafeReactChildren, title?: string) {
+        const t = i18n();
         return this.createAsync({
-            title: title ?? '系統信息',
+            title: title || t.systemMessage,
             body,
         });
     }

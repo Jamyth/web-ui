@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { extendTheme, Theme, theme, ChakraProvider, UseToastOptions } from '@chakra-ui/react';
 import { ToastContainer } from './ToastContainer';
+import { i18n } from '../../internal/i18n/util';
 
 export class ToastUtil {
     private static theme: Theme = theme;
@@ -45,42 +46,46 @@ export class ToastUtil {
         });
     }
 
-    static success(message: string, title: string = 'Success') {
+    static success(message: string, title: string) {
+        const t = i18n();
         return this.createAsync({
             status: 'success',
             description: message,
             isClosable: true,
-            title,
+            title: title || t.success,
             ...this.options,
         });
     }
 
-    static error(message: string, title: string = 'Error') {
+    static error(message: string, title: string) {
+        const t = i18n();
         return this.createAsync({
             status: 'error',
             description: message,
             isClosable: true,
-            title,
+            title: title || t.error,
             ...this.options,
         });
     }
 
-    static warning(message: string, title: string = 'Warning') {
+    static warning(message: string, title: string) {
+        const t = i18n();
         return this.createAsync({
             status: 'warning',
             description: message,
             isClosable: true,
-            title,
+            title: title || t.warning,
             ...this.options,
         });
     }
 
-    static info(message: string, title: string = 'Info') {
+    static info(message: string, title: string) {
+        const t = i18n();
         return this.createAsync({
             status: 'info',
             description: message,
             isClosable: true,
-            title,
+            title: title || t.info,
             ...this.options,
         });
     }
