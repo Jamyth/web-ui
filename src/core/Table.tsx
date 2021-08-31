@@ -66,10 +66,12 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
             <Tr>
                 <Td colSpan={columns.length}>
                     <Flex alignItems="center" py="50px" justifyContent="center">
-                        <AiOutlineFileExclamation fontSize="28px" />
-                        <Box as="h2" ml={2}>
-                            {emptyText ?? t.emptyData}
-                        </Box>
+                        <Loader loading={loading}>
+                            <AiOutlineFileExclamation fontSize="28px" />
+                            <Box as="h2" ml={2}>
+                                {emptyText ?? t.emptyData}
+                            </Box>
+                        </Loader>
                     </Flex>
                 </Td>
             </Tr>
@@ -80,11 +82,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
                 <Thead>
                     <Tr>{columns.map(this.renderHeader)}</Tr>
                 </Thead>
-                <Tbody>
-                    <Loader loading={loading}>
-                        {dataSource.length ? dataSource.map(this.renderRow) : emptyTextNode}
-                    </Loader>
-                </Tbody>
+                <Tbody>{dataSource.length && !loading ? dataSource.map(this.renderRow) : emptyTextNode}</Tbody>
             </ChakraTable>
         );
     }

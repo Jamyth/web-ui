@@ -49,11 +49,11 @@ export const TablePage = React.memo(() => {
         {
             title: 'Basic',
             components: [
-                <Table columns={columns} dataSource={dataSource} rowKey="name" />,
+                <Table loading columns={columns} dataSource={dataSource} rowKey="name" />,
                 ' ',
-                <Table columns={columns} dataSource={[]} rowKey="name" />,
+                <Table loading={false} columns={columns} dataSource={[]} rowKey="name" />,
                 ' ',
-                <Table columns={columns} dataSource={[]} emptyText="Custom Empty Text" rowKey="name" />,
+                <Table loading={false} columns={columns} dataSource={[]} emptyText="Custom Empty Text" rowKey="name" />,
             ],
         },
         {
@@ -61,7 +61,7 @@ export const TablePage = React.memo(() => {
             fullWidth: true,
             components: [
                 <React.Fragment>
-                    <Table columns={columns} dataSource={dataSource} rowKey="name" />
+                    <Table loading columns={columns} dataSource={dataSource} rowKey="name" />
                     <Pagination
                         totalCount={1000}
                         totalPage={100}
