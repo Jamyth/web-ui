@@ -57,12 +57,8 @@ export class Item extends React.PureComponent<Props, State> {
                     <FormLabel whiteSpace="nowrap">{label}</FormLabel>
                     {children}
                 </Flex>
-                {placeholder && <FormHelperText whiteSpace="nowrap">{placeholder}</FormHelperText>}
-                {errorMessage && (
-                    <FormHelperText color="red.500" whiteSpace="nowrap">
-                        {errorMessage}
-                    </FormHelperText>
-                )}
+                {placeholder && <FormHelperText>{placeholder}</FormHelperText>}
+                {errorMessage && <FormHelperText color="red.500">{errorMessage}</FormHelperText>}
             </FormControl>
         );
     }

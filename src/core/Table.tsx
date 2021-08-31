@@ -40,7 +40,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
         const isSticky = column.fixed ? 'sticky' : undefined;
         const style = column.fixed ? { [column.fixed]: 0 } : {};
         return (
-            <Td position={isSticky} {...style} fontSize="14px" textAlign={column.align}>
+            <Td key={index} position={isSticky} {...style} fontSize="14px" textAlign={column.align}>
                 {column.renderData(record, index)}
             </Td>
         );

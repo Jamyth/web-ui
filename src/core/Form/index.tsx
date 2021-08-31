@@ -94,6 +94,7 @@ export class Form extends React.PureComponent<Props> {
                     <Flex w="100%" flexWrap="wrap" flexDirection={layout === 'vertical' ? 'column' : 'row'}>
                         {children}
                         <ButtonGroup
+                            mt={layout === 'vertical' ? 2 : undefined}
                             w={layout === 'inline' ? undefined : '100%'}
                             justifyContent={this.getJustifyContent()}
                         >
