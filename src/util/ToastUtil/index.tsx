@@ -46,7 +46,7 @@ export class ToastUtil {
         });
     }
 
-    static success(message: string, title: string) {
+    static success(message: string, title?: string) {
         const t = i18n();
         return this.createAsync({
             status: 'success',
@@ -57,7 +57,7 @@ export class ToastUtil {
         });
     }
 
-    static error(message: string, title: string) {
+    static error(message: string, title?: string) {
         const t = i18n();
         return this.createAsync({
             status: 'error',
@@ -68,7 +68,7 @@ export class ToastUtil {
         });
     }
 
-    static warning(message: string, title: string) {
+    static warning(message: string, title?: string) {
         const t = i18n();
         return this.createAsync({
             status: 'warning',
@@ -79,7 +79,7 @@ export class ToastUtil {
         });
     }
 
-    static info(message: string, title: string) {
+    static info(message: string, title?: string) {
         const t = i18n();
         return this.createAsync({
             status: 'info',
