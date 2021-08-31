@@ -6,6 +6,7 @@ import { SafeReactChild, SafeReactChildren } from '../../type';
 
 export interface ModalOptions {
     body: SafeReactChildren;
+    centered?: boolean;
     title?: React.ReactChild;
     okayText?: string;
     cancelText?: string;

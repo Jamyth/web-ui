@@ -4,6 +4,7 @@ import { Table as ChakraTable, Th, Tr, Thead, Tbody, Td, Box } from '@chakra-ui/
 import { AiOutlineFileExclamation } from 'react-icons/ai';
 import { Flex } from '@chakra-ui/layout';
 import { i18n } from '../internal/i18n/core';
+import { Loader } from './Loader';
 
 export interface TableColumn<RowType extends object> {
     title: React.ReactElement | React.ReactChild;
@@ -21,7 +22,7 @@ export interface TableProps<RowType extends object> {
     columns: TableColumns<RowType>;
     dataSource: RowType[];
     rowKey: StringKey<RowType> | ((record: RowType, index?: number) => string) | 'index';
-    loading?: boolean;
+    loading: boolean;
     emptyText?: string;
 }
 
@@ -53,7 +54,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
                 ? this.rowKeyByIndex(record)
                 : typeof rowKey === 'function'
                 ? rowKey(record, index)
-                : rowKey;
+                : record[rowKey];
         const columns = this.props.columns;
         return <Tr key={key as any}>{columns.map(this.renderTd(record))}</Tr>;
     };
@@ -61,9 +62,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
     render() {
         const { loading, columns, emptyText, dataSource } = this.props;
         const t = i18n();
-        const emptyTextNode = loading ? (
-            <Box />
-        ) : (
+        const emptyTextNode = (
             <Tr>
                 <Td colSpan={columns.length}>
                     <Flex alignItems="center" py="50px" justifyContent="center">
@@ -81,7 +80,11 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
                 <Thead>
                     <Tr>{columns.map(this.renderHeader)}</Tr>
                 </Thead>
-                <Tbody>{dataSource.length ? dataSource.map(this.renderRow) : emptyTextNode}</Tbody>
+                <Tbody>
+                    <Loader loading={loading}>
+                        {dataSource.length ? dataSource.map(this.renderRow) : emptyTextNode}
+                    </Loader>
+                </Tbody>
             </ChakraTable>
         );
     }

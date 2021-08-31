@@ -7,7 +7,7 @@ import { Button } from '../../core/Button';
 export interface Props extends ModalOptions {}
 
 export const ModalContainer = React.memo(
-    ({ title, onClose, onOk, okayText = '確定', cancelText = '取消', closable = true, body }: Props) => {
+    ({ title, onClose, onOk, okayText = '確定', cancelText = '取消', closable = true, body, centered }: Props) => {
         const ref = React.useRef<HTMLDivElement>(null);
 
         const footer = (
@@ -24,6 +24,8 @@ export const ModalContainer = React.memo(
                 {ref !== null && (
                     <Modal
                         isOpen
+                        nested
+                        isCentered={centered}
                         portalProps={{
                             containerRef: ref,
                         }}
