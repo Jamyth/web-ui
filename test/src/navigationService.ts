@@ -8,6 +8,7 @@ import { TablePage } from './core/TableDemo';
 import { DrawerPage } from './core/DrawerDemo';
 import { ModalPage } from './core/ModalDemo';
 import { ToastPage } from './core/ToastDemo';
+import { TypedTabPage } from './core/TypedTabsDemo';
 
 export const NavigationService: Props[] = [
     {
@@ -57,6 +58,16 @@ export const NavigationService: Props[] = [
                 name: 'Default',
                 path: '/table',
                 component: TablePage,
+            },
+        ],
+    },
+    {
+        title: 'Typed Tabs',
+        modules: [
+            {
+                name: 'Default',
+                path: '/typed-tabs',
+                component: TypedTabPage,
             },
         ],
     },

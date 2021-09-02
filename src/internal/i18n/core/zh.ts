@@ -33,4 +33,5 @@ export const zh = {
     upload: '上傳',
     localImporterHint: '按下或拖曳 {1} 檔至此',
     uploadHint: '按下或拖曳上傳',
+    browse: '瀏覽',
 };

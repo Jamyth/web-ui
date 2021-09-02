@@ -33,4 +33,5 @@ export const en = {
     upload: 'Upload',
     localImporterHint: 'Click or drag {1} file to this area',
     uploadHint: 'Click Or Drag To Upload',
+    browse: 'Browse',
 };
