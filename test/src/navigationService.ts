@@ -67,6 +67,7 @@ export const NavigationService: Props[] = [
             {
                 name: 'Default',
                 path: '/typed-tabs',
+                routeParameter: '/:tab(a|b)?',
                 component: TypedTabPage,
             },
         ],

@@ -13,8 +13,9 @@ export const Navbar = React.memo(({ logoSrc, navigationService, navigationColorM
     const location = useLocation();
     const isLightMode = navigationColorMode === 'light';
 
-    const modules = navigationService.map((_) => _.modules);
-    const activeIndex = navigationService.findIndex((_) => _.modules.map((_) => _.path).includes(location.pathname));
+    const activeIndex = navigationService.findIndex((_) =>
+        _.modules.map((_) => _.path).some((_) => location.pathname.startsWith(_) && _ !== '/'),
+    );
 
     const renderAccordion = (service: NavigationService, index: number) => (
         <AccordionItem border="none" key={index}>
@@ -25,7 +26,7 @@ export const Navbar = React.memo(({ logoSrc, navigationService, navigationColorM
             </AccordionButton>
             <AccordionPanel p={0}>
                 {service.modules.map((_) => {
-                    const isActive = _.path === location.pathname;
+                    const isActive = _.path !== '/' && location.pathname.startsWith(_.path);
                     const backgroundColor = isActive ? 'blue.500' : isLightMode ? 'gray.100' : 'gray.800';
                     return (
                         <Link
