@@ -9,6 +9,7 @@ import { DrawerPage } from './core/DrawerDemo';
 import { ModalPage } from './core/ModalDemo';
 import { ToastPage } from './core/ToastDemo';
 import { TypedTabPage } from './core/TypedTabsDemo';
+import { DatePickerPage } from './core/DatePickerDemo';
 
 export const NavigationService: Props[] = [
     {
@@ -18,6 +19,11 @@ export const NavigationService: Props[] = [
                 name: 'Default',
                 path: '/input',
                 component: InputPage,
+            },
+            {
+                name: 'DatePicker',
+                path: '/datepicker',
+                component: DatePickerPage,
             },
         ],
     },
