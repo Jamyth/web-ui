@@ -28,7 +28,7 @@ export const DemoHelper = React.memo(({ groups }: Props) => {
                             ) : component === ' ' ? (
                                 <Box key={index} w="20px" />
                             ) : (
-                                <Box w={fullWidth ? '100%' : undefined}>{component}</Box>
+                                <Box w={fullWidth ? '100%' : 'auto'}>{component}</Box>
                             ),
                         )}
                     </Flex>

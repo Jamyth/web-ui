@@ -6,7 +6,6 @@ import { BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRigh
 import { Button, ButtonProps } from '@chakra-ui/button';
 import { DatePickerUtil } from '../../../internal/DatePickerUtil';
 import { Space } from '../../Space';
-import { Box } from '@iamyth/web-ui/native';
 
 export interface Props extends ControlledInput<Date> {
     renderType: RenderType;

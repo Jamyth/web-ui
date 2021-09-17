@@ -1,12 +1,14 @@
 import React from 'react';
-import { Input, Box } from '@chakra-ui/react';
-import { SafeReactChildren } from '../../../type';
+import { Box, Flex } from '@chakra-ui/react';
+import { SafeReactChild, SafeReactChildren } from '../../../type';
 import { RenderType } from '../type';
 
 interface Props {
-    value: string;
+    value: SafeReactChild | ((showPicker: boolean) => SafeReactChild);
     children: SafeReactChildren;
     renderType: RenderType;
+    allowToggle?: boolean;
+    onPickerClose?: () => void;
 }
 
 const inputStyle = {
@@ -15,7 +17,7 @@ const inputStyle = {
     boxShadow: ' 0 0 0 1px #3182ce',
 };
 
-export const InputWrapper = React.memo(({ value, children, renderType }: Props) => {
+export const InputWrapper = React.memo(({ value, children, renderType, onPickerClose, allowToggle = true }: Props) => {
     const [showPicker, setShowPicker] = React.useState(false);
     const [picker, setPicker] = React.useState<HTMLDivElement | null>(null);
     const [height, setHeight] = React.useState<string | number>(0);
@@ -27,7 +29,14 @@ export const InputWrapper = React.memo(({ value, children, renderType }: Props) 
         [renderType],
     );
 
-    const togglePicker = () => {
+    const onInputClick = () => {
+        if (!allowToggle) {
+            setShowPicker(true);
+            return;
+        }
+        if (showPicker) {
+            onPickerClose?.();
+        }
         setShowPicker(!showPicker);
     };
 
@@ -36,6 +45,7 @@ export const InputWrapper = React.memo(({ value, children, renderType }: Props) 
             const isClicked = !!e.target.closest('.g-date-picker');
             if (!isClicked) {
                 setShowPicker(false);
+                onPickerClose?.();
             }
         }
     };
@@ -58,16 +68,23 @@ export const InputWrapper = React.memo(({ value, children, renderType }: Props) 
 
     return (
         <Box position="relative" className="g-date-picker">
-            <Input
+            <Flex
+                alignItems="center"
+                lineHeight="1.15"
+                px="1rem"
+                h="10"
+                borderWidth="1px"
+                borderRadius="0.375rem"
                 style={showPicker ? inputStyle : {}}
-                onClick={togglePicker}
-                value={value}
-                color="transparent"
-                textShadow="0 0 0 #000"
-                _focus={{ boxShadow: 'none' }}
+                onClick={onInputClick}
                 cursor="pointer"
-            />
+                w="100%"
+                userSelect="none"
+            >
+                {typeof value === 'function' ? value(showPicker) : value}
+            </Flex>
             <Box
+                zIndex="1000"
                 top="110%"
                 position="absolute"
                 transition="max-height 0.15s ease-out"

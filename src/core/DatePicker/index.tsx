@@ -5,8 +5,8 @@ import { ControlledInput } from '../../type';
 import { InputWrapper } from './component/InputWrapper';
 import { RenderType } from './type';
 import { Header } from './component/Header';
-import { DateSelector } from './component/DateSelector';
-import { OtherSelector } from './component/OtherSelector';
+import { Range } from './Range';
+import { Selector } from './component/Selector';
 
 export interface Props extends ControlledInput<Date> {}
 
@@ -16,6 +16,8 @@ interface State {
 }
 
 export class DatePicker extends React.PureComponent<Props, State> {
+    static Range = Range;
+
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -32,30 +34,6 @@ export class DatePicker extends React.PureComponent<Props, State> {
         this.setState({ renderingDate });
     };
 
-    renderSelector = () => {
-        const renderType = this.state.renderType;
-        switch (renderType) {
-            case 'date':
-                return (
-                    <DateSelector
-                        {...this.props}
-                        onRenderTypeChange={this.onRenderTypeChange}
-                        onRenderingDateChange={this.onRenderingDateChange}
-                        renderingDate={this.state.renderingDate}
-                    />
-                );
-            default:
-                return (
-                    <OtherSelector
-                        renderType={renderType}
-                        onRenderTypeChange={this.onRenderTypeChange}
-                        onRenderingDateChange={this.onRenderingDateChange}
-                        renderingDate={this.state.renderingDate}
-                    />
-                );
-        }
-    };
-
     render() {
         return (
             <InputWrapper
@@ -69,7 +47,13 @@ export class DatePicker extends React.PureComponent<Props, State> {
                     onRenderTypeChange={this.onRenderTypeChange}
                 />
                 <Flex px={3} py={2} borderBottomWith="1" flexDir="column">
-                    {this.renderSelector()}
+                    <Selector
+                        {...this.props}
+                        renderType={this.state.renderType}
+                        onRenderTypeChange={this.onRenderTypeChange}
+                        onRenderingDateChange={this.onRenderingDateChange}
+                        renderingDate={this.state.renderingDate}
+                    />
                 </Flex>
             </InputWrapper>
         );
