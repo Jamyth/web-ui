@@ -56,7 +56,7 @@ export class Table<RowType extends object> extends React.PureComponent<TableProp
                 ? rowKey(record, index)
                 : record[rowKey];
         const columns = this.props.columns;
-        return <Tr key={key as any}>{columns.map(this.renderTd(record))}</Tr>;
+        return <Tr key={key as any}>{columns.map((data) => this.renderTd(record)(data, index))}</Tr>;
     };
 
     render() {
