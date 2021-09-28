@@ -15,7 +15,7 @@ interface ExtraButtonProps {
     colorScheme?: ButtonProps['colorScheme'];
     disabled?: boolean;
     variant?: ButtonProps['variant'];
-    onClick?: () => {};
+    onClick?: () => void;
 }
 
 export interface Props {
